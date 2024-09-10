@@ -51,6 +51,7 @@ func startrecording(v_port: int = 2, v_bpm: int = 120, v_tpqn: int = 96):
 	
 	var path = folderpath + "/" + filename.text + "-" + Time.get_datetime_string_from_system() + ".mid"
 	path = path.replace("\\", "/")
+	path = path.replace(":", "-")
 	file = FileAccess.open(path, FileAccess.WRITE)
 	if file == null:
 		printerr("File could not be opened!!")
