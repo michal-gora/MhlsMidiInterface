@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm2mjfctwkbdl"]
+
+[ext_resource type="Script" path="res://recorder.gd" id="1_btmg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vvnw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp41n"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syi0b"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgavm"]
+bg_color = Color(0.877346, 2.91191e-06, 1.92523e-07, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id="Theme_i57qu"]
+Button/styles/focus = SubResource("StyleBoxFlat_2vvnw")
+Button/styles/hover = SubResource("StyleBoxFlat_hp41n")
+Button/styles/normal = SubResource("StyleBoxFlat_syi0b")
+Button/styles/pressed = SubResource("StyleBoxFlat_qgavm")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_btmg5")
+metadata/_edit_lock_ = true
+
+[node name="start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 52.0
+offset_right = 243.0
+offset_bottom = 108.0
+theme = SubResource("Theme_i57qu")
+toggle_mode = true
+text = "START RECORDING"
+
+[node name="bpm_selector" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 940.0
+offset_top = 50.0
+offset_right = 1023.06
+offset_bottom = 87.0
+max_value = 300.0
+value = 120.0
+
+[node name="filename" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 54.0
+offset_right = 729.0
+offset_bottom = 95.0
+text = "name"
+placeholder_text = "filename"
+
+[node name="mididevice_selector" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 743.0
+offset_top = 239.0
+offset_right = 1097.0
+offset_bottom = 277.0
+clip_text = true
+
+[node name="refresh" type="Button" parent="."]
+layout_mode = 0
+offset_left = 699.0
+offset_top = 238.0
+offset_right = 738.0
+offset_bottom = 278.0
+
+[node name="openfiledialog" type="Button" parent="."]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 55.0
+offset_right = 854.0
+offset_bottom = 94.0
+text = "select location"
+
+[node name="openfolder" type="Button" parent="."]
+layout_mode = 0
+offset_left = 745.0
+offset_top = 100.0
+offset_right = 843.0
+offset_bottom = 131.0
+text = "open folder"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+size = Vector2i(303, 180)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+
+[connection signal="toggled" from="start" to="." method="_on_start_toggled"]
+[connection signal="pressed" from="refresh" to="." method="refresh_midi_devices"]
+[connection signal="pressed" from="openfiledialog" to="." method="_on_openfiledialog_pressed"]
+[connection signal="pressed" from="openfolder" to="." method="_on_openfolder_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
