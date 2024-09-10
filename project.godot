@@ -14,3 +14,14 @@ config/name="MidiInterface"
 run/main_scene="res://recorder.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

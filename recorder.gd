@@ -35,10 +35,12 @@ func refresh_midi_devices():
 # button pressed to toggle recording
 func _on_start_toggled(toggled_on: bool) -> void:
 	if (toggled_on):
-		start.text = "STOP RECORDING"
+		#start.text = "STOP RECORDING"
+		start.icon = preload("res://assets/radio_button_checked_70dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg")
 		startrecording(mididevice_selector.get_selected_id())
 	else:
-		start.text = "START RECORDING"
+		#start.text = "START RECORDING"
+		start.icon = preload("res://assets/radio_button_checked_70dp_FF0000_FILL0_wght400_GRAD0_opsz48.svg")
 		stoprecording()
 	mididevice_selector.disabled = toggled_on
 	bpm_box.editable = !toggled_on
