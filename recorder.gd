@@ -49,7 +49,9 @@ func _on_start_toggled(toggled_on: bool) -> void:
 func startrecording(v_port: int = 2, v_bpm: int = 120, v_tpqn: int = 96):
 	midi_in.open_port(v_port)
 	
-	file = FileAccess.open(folderpath + "/" + filename.text + "-" + Time.get_datetime_string_from_system() + ".mid", FileAccess.WRITE)
+	var path = folderpath + "/" + filename.text + "-" + Time.get_datetime_string_from_system() + ".mid"
+	path = path.replace("\\", "/")
+	file = FileAccess.open(path, FileAccess.WRITE)
 	if file == null:
 		printerr("File could not be opened!!")
 		_on_start_toggled(false)
@@ -144,7 +146,7 @@ func encode_variable_length(value: int) -> PackedByteArray:
 
 func _on_file_dialog_dir_selected(dir: String) -> void:
 	print(dir)
-	folderpath = dir
+	folderpath = dir.replace("\\", "/")
 	var file_p = FileAccess.open(LASTFOLDERPATHSETTING, FileAccess.WRITE)
 	if file_p != null:
 		file_p.store_line(folderpath)
