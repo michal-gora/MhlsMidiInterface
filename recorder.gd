@@ -70,9 +70,6 @@ func startrecording(v_port: int = 2, v_bpm: int = 120, v_tpqn: int = 96):
 func stoprecording(v_port: int = 2):
 	isrecording = false
 	# ending:
-	if file == null:
-		midi_in.close_port()
-		return
 	file.store_buffer([0x00, 0xff, 0x2f, 0x00]) # End of Track
 	var trackendpos = file.get_position()
 	var trackdatalength = trackendpos - trackstartpos
